@@ -1,0 +1,120 @@
+
+/home/avl/Code/acs-spring-l2/programs/assembly/../build/assembly/bin/jalr.riscv:     file format elf32-littleriscv
+
+
+Disassembly of section .text:
+
+00000200 <_start>:
+ 200:	00200e13          	li	t3,2
+ 204:	00000f93          	li	t6,0
+ 208:	21c00113          	li	sp,540
+
+0000020c <linkaddr_2>:
+ 20c:	000109e7          	jalr	s3,sp
+ 210:	00000013          	nop
+ 214:	00000013          	nop
+ 218:	0d00006f          	j	2e8 <fail>
+
+0000021c <target_2>:
+ 21c:	20c00093          	li	ra,524
+ 220:	00408093          	addi	ra,ra,4
+ 224:	0d309263          	bne	ra,s3,2e8 <fail>
+
+00000228 <test_3>:
+ 228:	00300e13          	li	t3,3
+ 22c:	00000f93          	li	t6,0
+ 230:	24000193          	li	gp,576
+
+00000234 <linkaddr_3>:
+ 234:	00018067          	jr	gp
+ 238:	00000013          	nop
+ 23c:	0ac0006f          	j	2e8 <fail>
+
+00000240 <target_3>:
+ 240:	0a0f9463          	bnez	t6,2e8 <fail>
+
+00000244 <test_4>:
+ 244:	00400e13          	li	t3,4
+ 248:	00000213          	li	tp,0
+ 24c:	25800313          	li	t1,600
+ 250:	000309e7          	jalr	s3,t1
+ 254:	09c01a63          	bne	zero,t3,2e8 <fail>
+ 258:	00120213          	addi	tp,tp,1 # 1 <_start-0x1ff>
+ 25c:	00200293          	li	t0,2
+ 260:	fe5216e3          	bne	tp,t0,24c <test_4+0x8>
+
+00000264 <test_5>:
+ 264:	00500e13          	li	t3,5
+ 268:	00000213          	li	tp,0
+ 26c:	27c00313          	li	t1,636
+ 270:	00000013          	nop
+ 274:	000309e7          	jalr	s3,t1
+ 278:	07c01863          	bne	zero,t3,2e8 <fail>
+ 27c:	00120213          	addi	tp,tp,1 # 1 <_start-0x1ff>
+ 280:	00200293          	li	t0,2
+ 284:	fe5214e3          	bne	tp,t0,26c <test_5+0x8>
+
+00000288 <test_6>:
+ 288:	00600e13          	li	t3,6
+ 28c:	00000213          	li	tp,0
+ 290:	2a400313          	li	t1,676
+ 294:	00000013          	nop
+ 298:	00000013          	nop
+ 29c:	000309e7          	jalr	s3,t1
+ 2a0:	05c01463          	bne	zero,t3,2e8 <fail>
+ 2a4:	00120213          	addi	tp,tp,1 # 1 <_start-0x1ff>
+ 2a8:	00200293          	li	t0,2
+ 2ac:	fe5212e3          	bne	tp,t0,290 <test_6+0x8>
+
+000002b0 <test_7>:
+ 2b0:	00100093          	li	ra,1
+ 2b4:	2cc00113          	li	sp,716
+ 2b8:	ffc109e7          	jalr	s3,sp,-4
+ 2bc:	00108093          	addi	ra,ra,1
+ 2c0:	00108093          	addi	ra,ra,1
+ 2c4:	00108093          	addi	ra,ra,1
+ 2c8:	00108093          	addi	ra,ra,1
+ 2cc:	00108093          	addi	ra,ra,1
+ 2d0:	00108093          	addi	ra,ra,1
+ 2d4:	00400e93          	li	t4,4
+ 2d8:	00700e13          	li	t3,7
+ 2dc:	01d09663          	bne	ra,t4,2e8 <fail>
+ 2e0:	01c01663          	bne	zero,t3,2ec <pass>
+ 2e4:	00100e13          	li	t3,1
+
+000002e8 <fail>:
+ 2e8:	00c0006f          	j	2f4 <exit>
+
+000002ec <pass>:
+ 2ec:	00000e13          	li	t3,0
+ 2f0:	0040006f          	j	2f4 <exit>
+
+000002f4 <exit>:
+ 2f4:	c0002573          	rdcycle	a0
+ 2f8:	c02025f3          	rdinstret	a1
+ 2fc:	01051613          	slli	a2,a0,0x10
+ 300:	01065613          	srli	a2,a2,0x10
+ 304:	000206b7          	lui	a3,0x20
+ 308:	00d666b3          	or	a3,a2,a3
+ 30c:	78069073          	csrw	mtohost,a3
+ 310:	01055613          	srli	a2,a0,0x10
+ 314:	000306b7          	lui	a3,0x30
+ 318:	00d666b3          	or	a3,a2,a3
+ 31c:	78069073          	csrw	mtohost,a3
+ 320:	00010637          	lui	a2,0x10
+ 324:	00a60613          	addi	a2,a2,10 # 1000a <begin_signature+0xf00a>
+ 328:	78061073          	csrw	mtohost,a2
+ 32c:	01059613          	slli	a2,a1,0x10
+ 330:	01065613          	srli	a2,a2,0x10
+ 334:	000201b7          	lui	gp,0x20
+ 338:	003661b3          	or	gp,a2,gp
+ 33c:	78019073          	csrw	mtohost,gp
+ 340:	0105d613          	srli	a2,a1,0x10
+ 344:	000301b7          	lui	gp,0x30
+ 348:	003661b3          	or	gp,a2,gp
+ 34c:	78019073          	csrw	mtohost,gp
+ 350:	00010637          	lui	a2,0x10
+ 354:	00a60613          	addi	a2,a2,10 # 1000a <begin_signature+0xf00a>
+ 358:	78061073          	csrw	mtohost,a2
+ 35c:	780e1073          	csrw	mtohost,t3
+ 360:	0000006f          	j	360 <exit+0x6c>

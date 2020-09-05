@@ -1,0 +1,72 @@
+
+/home/avl/Code/acs-spring-l2/programs/assembly/../build/assembly/bin/jal.riscv:     file format elf32-littleriscv
+
+
+Disassembly of section .text:
+
+00000200 <_start>:
+ 200:	00200e13          	li	t3,2
+ 204:	00000093          	li	ra,0
+
+00000208 <linkaddr_2>:
+ 208:	010000ef          	jal	218 <target_2>
+ 20c:	00000013          	nop
+ 210:	00000013          	nop
+ 214:	0440006f          	j	258 <fail>
+
+00000218 <target_2>:
+ 218:	20800113          	li	sp,520
+ 21c:	00410113          	addi	sp,sp,4
+ 220:	02111c63          	bne	sp,ra,258 <fail>
+
+00000224 <test_3>:
+ 224:	00100113          	li	sp,1
+ 228:	014000ef          	jal	23c <test_3+0x18>
+ 22c:	00110113          	addi	sp,sp,1
+ 230:	00110113          	addi	sp,sp,1
+ 234:	00110113          	addi	sp,sp,1
+ 238:	00110113          	addi	sp,sp,1
+ 23c:	00110113          	addi	sp,sp,1
+ 240:	00110113          	addi	sp,sp,1
+ 244:	00300e93          	li	t4,3
+ 248:	00300e13          	li	t3,3
+ 24c:	01d11663          	bne	sp,t4,258 <fail>
+ 250:	01c01663          	bne	zero,t3,25c <pass>
+ 254:	00100e13          	li	t3,1
+
+00000258 <fail>:
+ 258:	00c0006f          	j	264 <exit>
+
+0000025c <pass>:
+ 25c:	00000e13          	li	t3,0
+ 260:	0040006f          	j	264 <exit>
+
+00000264 <exit>:
+ 264:	c0002573          	rdcycle	a0
+ 268:	c02025f3          	rdinstret	a1
+ 26c:	01051613          	slli	a2,a0,0x10
+ 270:	01065613          	srli	a2,a2,0x10
+ 274:	000206b7          	lui	a3,0x20
+ 278:	00d666b3          	or	a3,a2,a3
+ 27c:	78069073          	csrw	mtohost,a3
+ 280:	01055613          	srli	a2,a0,0x10
+ 284:	000306b7          	lui	a3,0x30
+ 288:	00d666b3          	or	a3,a2,a3
+ 28c:	78069073          	csrw	mtohost,a3
+ 290:	00010637          	lui	a2,0x10
+ 294:	00a60613          	addi	a2,a2,10 # 1000a <begin_signature+0xf00a>
+ 298:	78061073          	csrw	mtohost,a2
+ 29c:	01059613          	slli	a2,a1,0x10
+ 2a0:	01065613          	srli	a2,a2,0x10
+ 2a4:	000201b7          	lui	gp,0x20
+ 2a8:	003661b3          	or	gp,a2,gp
+ 2ac:	78019073          	csrw	mtohost,gp
+ 2b0:	0105d613          	srli	a2,a1,0x10
+ 2b4:	000301b7          	lui	gp,0x30
+ 2b8:	003661b3          	or	gp,a2,gp
+ 2bc:	78019073          	csrw	mtohost,gp
+ 2c0:	00010637          	lui	a2,0x10
+ 2c4:	00a60613          	addi	a2,a2,10 # 1000a <begin_signature+0xf00a>
+ 2c8:	78061073          	csrw	mtohost,a2
+ 2cc:	780e1073          	csrw	mtohost,t3
+ 2d0:	0000006f          	j	2d0 <exit+0x6c>

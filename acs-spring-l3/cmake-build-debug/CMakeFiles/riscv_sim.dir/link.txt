@@ -1,0 +1,1 @@
+/usr/bin/c++    -g   CMakeFiles/riscv_sim.dir/src/Instruction.cpp.o CMakeFiles/riscv_sim.dir/src/main.cpp.o  -o riscv_sim 
